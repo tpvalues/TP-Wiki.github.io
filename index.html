@@ -140,14 +140,14 @@
       background: var(--bg-sidebar);
       border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 0.3rem 0.6rem;
+      padding: 0.3rem 0.65rem;
       cursor: pointer;
       font-size: 0.82rem;
       font-family: inherit;
       color: var(--text);
       display: flex;
       align-items: center;
-      gap: 0.3rem;
+      gap: 0.35rem;
       height: 32px;
     }
     .theme-toggle:hover, .settings-btn:hover, .translate-btn:hover { background: var(--active-bg); }
@@ -324,49 +324,52 @@
         <a href="definitions.html">Definitions</a>
         <a href="#">About</a>
       </nav>
-      <button class="translate-btn" id="translateBtn" type="button">Translate</button>
+      <button class="translate-btn" id="translateBtn" type="button">
+        <span>🗫</span>
+        <span>Translate</span>
+      </button>
       <div class="translate-panel" id="translatePanel">
         <label for="translateSelect">Language</label>
         <select id="translateSelect">
           <option value="">Original (English)</option>
-          <option value="fr">French</option>
-          <option value="de">German</option>
-          <option value="es">Spanish</option>
-          <option value="it">Italian</option>
-          <option value="pt">Portuguese</option>
-          <option value="nl">Dutch</option>
-          <option value="pl">Polish</option>
-          <option value="sv">Swedish</option>
-          <option value="da">Danish</option>
-          <option value="fi">Finnish</option>
-          <option value="no">Norwegian</option>
-          <option value="cs">Czech</option>
-          <option value="sk">Slovak</option>
-          <option value="hu">Hungarian</option>
-          <option value="ro">Romanian</option>
-          <option value="bg">Bulgarian</option>
-          <option value="el">Greek</option>
-          <option value="hr">Croatian</option>
-          <option value="sr">Serbian</option>
-          <option value="sl">Slovenian</option>
-          <option value="lt">Lithuanian</option>
-          <option value="lv">Latvian</option>
-          <option value="et">Estonian</option>
-          <option value="ga">Irish</option>
-          <option value="uk">Ukrainian</option>
-          <option value="ru">Russian</option>
-          <option value="zh-CN">Chinese (Simplified)</option>
-          <option value="zh-TW">Chinese (Traditional)</option>
-          <option value="ja">Japanese</option>
-          <option value="ko">Korean</option>
-          <option value="hi">Hindi</option>
-          <option value="ar">Arabic</option>
-          <option value="tr">Turkish</option>
-          <option value="th">Thai</option>
-          <option value="vi">Vietnamese</option>
-          <option value="id">Indonesian</option>
-          <option value="ms">Malay</option>
-          <option value="sw">Swahili</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="es">Español</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+          <option value="nl">Nederlands</option>
+          <option value="pl">Polski</option>
+          <option value="sv">Svenska</option>
+          <option value="da">Dansk</option>
+          <option value="fi">Suomi</option>
+          <option value="no">Norsk</option>
+          <option value="cs">Čeština</option>
+          <option value="sk">Slovenčina</option>
+          <option value="hu">Magyar</option>
+          <option value="ro">Română</option>
+          <option value="bg">Български</option>
+          <option value="el">Ελληνικά</option>
+          <option value="hr">Hrvatski</option>
+          <option value="sr">Српски</option>
+          <option value="sl">Slovenščina</option>
+          <option value="lt">Lietuvių</option>
+          <option value="lv">Latviešu</option>
+          <option value="et">Eesti</option>
+          <option value="ga">Gaeilge</option>
+          <option value="uk">Українська</option>
+          <option value="ru">Русский</option>
+          <option value="zh-CN">中文 (简体)</option>
+          <option value="zh-TW">中文 (繁體)</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="hi">हिन्दी</option>
+          <option value="ar">العربية</option>
+          <option value="tr">Türkçe</option>
+          <option value="th">ไทย</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="ms">Bahasa Melayu</option>
+          <option value="sw">Kiswahili</option>
           <option value="af">Afrikaans</option>
         </select>
       </div>
@@ -374,7 +377,10 @@
         <span id="themeIcon">◐</span>
         <span id="themeLabel">Dark</span>
       </button>
-      <button class="settings-btn" id="settingsBtn" type="button" aria-label="Display settings">Aa</button>
+      <button class="settings-btn" id="settingsBtn" type="button" aria-label="Display settings">
+        <span>✎</span>
+        <span>Aa</span>
+      </button>
       <div class="settings-panel" id="settingsPanel">
         <label for="fontFamily">Font</label>
         <select id="fontFamily">
@@ -500,11 +506,6 @@
 
     function doTranslate(lang) {
       if (!lang) {
-        var frame = document.querySelector('.goog-te-banner-frame');
-        if (frame) {
-          var close = frame.contentDocument.querySelector('.goog-close-link');
-          if (close) close.click();
-        }
         var combo = document.querySelector('.goog-te-combo');
         if (combo) {
           combo.value = '';
