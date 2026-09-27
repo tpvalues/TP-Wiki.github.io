@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Third Position Wiki</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.55;
+      color: #202122;
+      background: #f8f9fa;
+    }
+    a { color: #0645ad; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    a:visited { color: #0b0080; }
+    .site-header {
+      background: #fff;
+      border-bottom: 1px solid #a7d7f9;
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #000;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .logo-mark {
+      width: 32px;
+      height: 32px;
+      background: #1a1a2e;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+      border-radius: 3px;
+      letter-spacing: -0.5px;
+    }
+    .search-box {
+      flex: 1;
+      max-width: 420px;
+      display: flex;
+    }
+    .search-box input {
+      flex: 1;
+      padding: 0.45rem 0.7rem;
+      border: 1px solid #a2a9b1;
+      border-right: none;
+      border-radius: 2px 0 0 2px;
+      font-size: 0.95rem;
+    }
+    .search-box button {
+      padding: 0.45rem 0.9rem;
+      background: #f8f9fa;
+      border: 1px solid #a2a9b1;
+      border-radius: 0 2px 2px 0;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+    .search-box button:hover { background: #eaecf0; }
+    .header-links {
+      margin-left: auto;
+      display: flex;
+      gap: 1.1rem;
+      font-size: 0.9rem;
+    }
+    .header-links a { color: #202122; }
+    .page-wrapper {
+      display: flex;
+      max-width: 1280px;
+      margin: 0 auto;
+      min-height: calc(100vh - 52px);
+    }
+    .sidebar {
+      width: 210px;
+      flex-shrink: 0;
+      background: #f8f9fa;
+      border-right: 1px solid #a7d7f9;
+      padding: 1rem 0.75rem;
+      font-size: 0.9rem;
+    }
+    .sidebar h3 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #54595d;
+      margin: 1.1rem 0 0.35rem 0.4rem;
+    }
+    .sidebar h3:first-child { margin-top: 0.2rem; }
+    .sidebar ul { list-style: none; }
+    .sidebar li a {
+      display: block;
+      padding: 0.25rem 0.4rem;
+      color: #0645ad;
+      border-radius: 2px;
+    }
+    .sidebar li a:hover { background: #eaecf0; text-decoration: none; }
+    .sidebar li a.active {
+      background: #eaf3ff;
+      font-weight: 600;
+      color: #000;
+    }
+    .main-content {
+      flex: 1;
+      background: #fff;
+      padding: 1.4rem 1.8rem 2.5rem;
+      border-left: 1px solid #a7d7f9;
+      min-width: 0;
+    }
+    .main-content h1 {
+      font-family: "Linux Libertine", "Georgia", "Times", serif;
+      font-size: 1.9rem;
+      font-weight: 400;
+      border-bottom: 1px solid #a2a9b1;
+      padding-bottom: 0.25rem;
+      margin-bottom: 0.6rem;
+    }
+    .tagline {
+      font-size: 0.95rem;
+      color: #54595d;
+      margin-bottom: 1.4rem;
+    }
+    .welcome-box {
+      background: #f8f9fa;
+      border: 1px solid #a2a9b1;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.6rem;
+      font-size: 0.98rem;
+    }
+    .welcome-box strong { color: #000; }
+    .section-title {
+      font-family: "Linux Libertine", "Georgia", "Times", serif;
+      font-size: 1.35rem;
+      font-weight: 400;
+      border-bottom: 1px solid #a2a9b1;
+      padding-bottom: 0.2rem;
+      margin: 1.8rem 0 0.9rem;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      border: 1px solid #a2a9b1;
+      background: #fff;
+      padding: 0.9rem 1rem;
+      border-radius: 2px;
+    }
+    .card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+    }
+    .card h3 a { color: #0645ad; }
+    .card p {
+      font-size: 0.9rem;
+      color: #202122;
+      line-height: 1.45;
+    }
+    .card .meta {
+      font-size: 0.8rem;
+      color: #54595d;
+      margin-top: 0.5rem;
+    }
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.2rem;
+      margin: 0.8rem 0 0.4rem;
+      font-size: 0.95rem;
+    }
+    .site-footer {
+      background: #f8f9fa;
+      border-top: 1px solid #a7d7f9;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #54595d;
+    }
+    .site-footer a { color: #0645ad; }
+    @media (max-width: 800px) {
+      .page-wrapper { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #a7d7f9;
+        padding: 0.75rem;
+      }
+      .sidebar ul { display: flex; flex-wrap: wrap; gap: 0.2rem 0.6rem; }
+      .sidebar h3 { width: 100%; margin-top: 0.6rem; }
+      .header-links { display: none; }
+      .main-content { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">TP</span>
+      Third Position Wiki
+    </a>
+    <form class="search-box" action="#" method="get" onsubmit="return false;">
+      <input type="search" name="q" placeholder="Search Third Position Wiki" aria-label="Search">
+      <button type="submit">Search</button>
+    </form>
+    <nav class="header-links">
+      <a href="#">Main Page</a>
+      <a href="#">Portals</a>
+      <a href="#">About</a>
+    </nav>
+  </header>
+  <div class="page-wrapper">
+    <aside class="sidebar">
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="index.html" class="active">Main Page</a></li>
+        <li><a href="#">Ideologies</a></li>
+        <li><a href="#">Movements</a></li>
+        <li><a href="#">Figures</a></li>
+        <li><a href="#">Themes</a></li>
+      </ul>
+      <h3>Portals</h3>
+      <ul>
+        <li><a href="#">British Third Position</a></li>
+        <li><a href="#">European Nationalism</a></li>
+        <li><a href="#">Corporatism</a></li>
+        <li><a href="#">National Syndicalism</a></li>
+      </ul>
+      <h3>Tools</h3>
+      <ul>
+        <li><a href="#">Recent changes</a></li>
+        <li><a href="#">Random page</a></li>
+        <li><a href="#">Help</a></li>
+      </ul>
+    </aside>
+    <main class="main-content">
+      <h1>Third Position Wiki</h1>
+      <p class="tagline">The free encyclopedia of Third Position ideologies, movements and figures</p>
+      <div class="welcome-box">
+        <strong>Welcome to the Third Position Wiki.</strong>
+        This project documents Third Position thought, related political movements, and the individuals who shaped them.
+        Pages about general nations, mainstream ideologies or non-TP topics redirect to the corresponding article on
+        <a href="https://en.wikipedia.org" target="_blank" rel="noopener">English Wikipedia</a>.
+      </div>
+      <h2 class="section-title">Featured movement</h2>
+      <div class="card">
+        <h3><a href="#">Union Movement</a></h3>
+        <p>
+          British political organisation founded by Oswald Mosley in 1948 as successor to the British Union of Fascists.
+          It advanced the idea of "Europe a Nation" and pan-European nationalism in the post-war period.
+        </p>
+        <p class="meta">Founded 1948 · Dissolved 1973 · Ideology: Europe a Nation, Pan-European nationalism</p>
+      </div>
+      <h2 class="section-title">Key areas</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3><a href="#">Ideologies</a></h3>
+          <p>Third Position, National Syndicalism, Corporatism, Europe a Nation, Distributism and related currents.</p>
+        </div>
+        <div class="card">
+          <h3><a href="#">Movements &amp; Parties</a></h3>
+          <p>Historical and contemporary organisations that identified with or developed Third Position ideas.</p>
+        </div>
+        <div class="card">
+          <h3><a href="#">Figures</a></h3>
+          <p>Biographies of theorists, organisers and public figures associated with the Third Position tradition.</p>
+        </div>
+        <div class="card">
+          <h3><a href="#">Themes</a></h3>
+          <p>Recurring concepts, programmes and historical contexts (with selective links to Wikipedia where appropriate).</p>
+        </div>
+      </div>
+      <h2 class="section-title">Quick links</h2>
+      <div class="quick-links">
+        <a href="#">Oswald Mosley</a>
+        <a href="#">British Union of Fascists</a>
+        <a href="#">Europe a Nation</a>
+        <a href="#">National Party of Europe</a>
+        <a href="#">Action Party</a>
+        <a href="#">Jeffrey Hamm</a>
+      </div>
+      <h2 class="section-title">About this project</h2>
+      <p style="font-size: 0.95rem; max-width: 62ch;">
+        The Third Position Wiki is an independent reference project focused exclusively on Third Position
+        ideologies, movements and personalities. It is not affiliated with any political party or organisation.
+        Content aims for factual accuracy and clear sourcing. General encyclopedic topics are left to Wikipedia.
+      </p>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <p>
+      Third Position Wiki · Independent reference project ·
+      <a href="#">About</a> ·
+      <a href="#">Contact</a> ·
+      Content may be reused under a free license (to be confirmed)
+    </p>
+  </footer>
+</body>
+</html>
