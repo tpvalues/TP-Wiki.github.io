@@ -8,7 +8,7 @@
   <link rel="apple-touch-icon" href="tpwikilogo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f4f5f7;
@@ -24,6 +24,8 @@
       --link-visited: #5a3d9a;
       --active-bg: #e8ecff;
       --welcome-bg: #eef0f5;
+      --font-family: "Lexend", system-ui, sans-serif;
+      --font-size: 16px;
     }
     [data-theme="dark"] {
       --bg: #12141a;
@@ -41,9 +43,9 @@
       --welcome-bg: #222632;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; }
+    html { font-size: var(--font-size); }
     body {
-      font-family: "Lexend", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-family: var(--font-family);
       line-height: 1.65;
       color: var(--text);
       background: var(--bg);
@@ -82,7 +84,7 @@
       object-fit: contain;
     }
     .search-box {
- dual: 1;
+      flex: 1;
       max-width: 400px;
       display: flex;
     }
@@ -112,7 +114,7 @@
       margin-left: auto;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.7rem;
     }
     .header-links {
       display: flex;
@@ -120,7 +122,7 @@
       font-size: 0.88rem;
     }
     .header-links a { color: var(--text); }
-    .theme-toggle {
+    .theme-toggle, .settings-btn {
       background: var(--bg-sidebar);
       border: 1px solid var(--border);
       border-radius: 4px;
@@ -133,7 +135,48 @@
       align-items: center;
       gap: 0.35rem;
     }
-    .theme-toggle:hover { background: var(--active-bg); }
+    .theme-toggle:hover, .settings-btn:hover { background: var(--active-bg); }
+    .settings-panel {
+      display: none;
+      position: absolute;
+      top: 52px;
+      right: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.15rem;
+      z-index: 200;
+      min-width: 220px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    .settings-panel.open { display: block; }
+    .settings-panel label {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+    .settings-panel select, .settings-panel input[type="number"] {
+      width: 100%;
+      padding: 0.35rem 0.5rem;
+      margin-bottom: 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.88rem;
+    }
+    .settings-panel .row {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .settings-panel .row input[type="number"] {
+      width: 70px;
+      margin-bottom: 0;
+    }
     .page-wrapper {
       display: flex;
       max-width: 1260px;
@@ -245,6 +288,7 @@
       .main-content { padding: 1.5rem 1.2rem 2.5rem; }
       .welcome-hero h1 { font-size: 1.9rem; }
       .welcome-hero img { width: 96px; }
+      .settings-panel { right: 8px; }
     }
   </style>
 </head>
@@ -268,6 +312,23 @@
         <span id="themeIcon">◐</span>
         <span id="themeLabel">Dark</span>
       </button>
+      <button class="settings-btn" id="settingsBtn" type="button" aria-label="Display settings">Aa</button>
+      <div class="settings-panel" id="settingsPanel">
+        <label for="fontFamily">Font</label>
+        <select id="fontFamily">
+          <option value='"Lexend", system-ui, sans-serif'>Lexend</option>
+          <option value='"Source Serif 4", "Times New Roman", Times, serif'>Source Serif</option>
+          <option value='"Times New Roman", Times, serif'>Times New Roman</option>
+          <option value='Georgia, "Times New Roman", serif'>Georgia</option>
+          <option value='"IBM Plex Sans", system-ui, sans-serif'>IBM Plex Sans</option>
+          <option value='system-ui, -apple-system, sans-serif'>System UI</option>
+        </select>
+        <label for="fontSize">Font size (px)</label>
+        <div class="row">
+          <input type="number" id="fontSize" min="12" max="24" step="1" value="16">
+          <span style="font-size:0.82rem; color:var(--text-muted)">px</span>
+        </div>
+      </div>
     </div>
   </header>
   <div class="page-wrapper">
@@ -324,10 +385,15 @@
     </p>
   </footer>
   <script>
+    const root = document.documentElement;
     const toggle = document.getElementById("themeToggle");
     const icon = document.getElementById("themeIcon");
     const label = document.getElementById("themeLabel");
-    const root = document.documentElement;
+    const settingsBtn = document.getElementById("settingsBtn");
+    const settingsPanel = document.getElementById("settingsPanel");
+    const fontFamilySelect = document.getElementById("fontFamily");
+    const fontSizeInput = document.getElementById("fontSize");
+
     function applyTheme(theme) {
       root.setAttribute("data-theme", theme);
       if (theme === "dark") {
@@ -339,17 +405,60 @@
       }
       localStorage.setItem("tp-theme", theme);
     }
-    const saved = localStorage.getItem("tp-theme");
-    if (saved) {
-      applyTheme(saved);
+
+    function applyFontFamily(value) {
+      root.style.setProperty("--font-family", value);
+      localStorage.setItem("tp-font-family", value);
+      fontFamilySelect.value = value;
+    }
+
+    function applyFontSize(px) {
+      const size = Math.min(24, Math.max(12, parseInt(px, 10) || 16));
+      root.style.setProperty("--font-size", size + "px");
+      localStorage.setItem("tp-font-size", size);
+      fontSizeInput.value = size;
+    }
+
+    const savedTheme = localStorage.getItem("tp-theme");
+    if (savedTheme) {
+      applyTheme(savedTheme);
     } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
       applyTheme("dark");
     } else {
       applyTheme("light");
     }
+
+    const savedFont = localStorage.getItem("tp-font-family");
+    if (savedFont) applyFontFamily(savedFont);
+
+    const savedSize = localStorage.getItem("tp-font-size");
+    if (savedSize) applyFontSize(savedSize);
+
     toggle.addEventListener("click", () => {
       const current = root.getAttribute("data-theme");
       applyTheme(current === "dark" ? "light" : "dark");
+    });
+
+    settingsBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      settingsPanel.classList.toggle("open");
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) {
+        settingsPanel.classList.remove("open");
+      }
+    });
+
+    fontFamilySelect.addEventListener("change", () => {
+      applyFontFamily(fontFamilySelect.value);
+    });
+
+    fontSizeInput.addEventListener("change", () => {
+      applyFontSize(fontSizeInput.value);
+    });
+    fontSizeInput.addEventListener("input", () => {
+      applyFontSize(fontSizeInput.value);
     });
   </script>
 </body>
