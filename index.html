@@ -86,9 +86,13 @@
       gap: 0.6rem;
       font-weight: 600;
       font-size: 1.15rem;
-      color: var(--text);
-      text-decoration: none;
+      color: var(--text) !important;
+      text-decoration: none !important;
       white-space: nowrap;
+    }
+    .logo:visited, .logo:hover, .logo:active {
+      color: var(--text) !important;
+      text-decoration: none !important;
     }
     .logo img {
       height: 36px;
@@ -136,6 +140,7 @@
       font-size: 0.88rem;
     }
     .header-links a { color: var(--text); }
+    .header-links a:visited { color: var(--text); }
     .theme-toggle, .settings-btn, .translate-btn {
       background: var(--bg-sidebar);
       border: 1px solid var(--border);
@@ -161,7 +166,7 @@
       border-radius: 8px;
       padding: 1rem 1.15rem;
       z-index: 200;
-      min-width: 220px;
+      min-width: 240px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.15);
     }
     .settings-panel.open, .translate-panel.open { display: block; }
@@ -172,7 +177,7 @@
       margin-bottom: 0.25rem;
       font-weight: 500;
     }
-    .settings-panel select, .settings-panel input[type="number"],
+    .settings-panel select,
     .translate-panel select {
       width: 100%;
       padding: 0.35rem 0.5rem;
@@ -184,14 +189,48 @@
       font-family: inherit;
       font-size: 0.88rem;
     }
-    .settings-panel .row {
+    .size-control {
       display: flex;
-      gap: 0.5rem;
       align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.4rem;
     }
-    .settings-panel .row input[type="number"] {
-      width: 70px;
-      margin-bottom: 0;
+    .size-control button {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg-sidebar);
+      color: var(--text);
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-family: inherit;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .size-control button:hover { background: var(--active-bg); }
+    .size-control input[type="number"] {
+      width: 64px;
+      height: 32px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+      -moz-appearance: textfield;
+    }
+    .size-control input[type="number"]::-webkit-outer-spin-button,
+    .size-control input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .size-control span {
+      font-size: 0.82rem;
+      color: var(--text-muted);
     }
     #google_translate_element { display: none; }
     .goog-te-banner-frame { display: none !important; }
@@ -391,10 +430,12 @@
           <option value='"IBM Plex Sans", system-ui, sans-serif'>IBM Plex Sans</option>
           <option value='system-ui, -apple-system, sans-serif'>System UI</option>
         </select>
-        <label for="fontSize">Font size (px)</label>
-        <div class="row">
+        <label for="fontSize">Font size</label>
+        <div class="size-control">
+          <button type="button" id="fontSizeMinus" aria-label="Decrease">−</button>
           <input type="number" id="fontSize" min="12" max="24" step="1" value="16">
-          <span style="font-size:0.82rem; color:var(--text-muted)">px</span>
+          <button type="button" id="fontSizePlus" aria-label="Increase">+</button>
+          <span>px</span>
         </div>
       </div>
     </div>
@@ -478,6 +519,8 @@
     const translateSelect = document.getElementById("translateSelect");
     const fontFamilySelect = document.getElementById("fontFamily");
     const fontSizeInput = document.getElementById("fontSize");
+    const fontSizeMinus = document.getElementById("fontSizeMinus");
+    const fontSizePlus = document.getElementById("fontSizePlus");
 
     function applyTheme(theme) {
       root.setAttribute("data-theme", theme);
@@ -498,7 +541,9 @@
     }
 
     function applyFontSize(px) {
-      const size = Math.min(24, Math.max(12, parseInt(px, 10) || 16));
+      let size = parseInt(px, 10);
+      if (isNaN(size)) size = 16;
+      size = Math.min(24, Math.max(12, size));
       root.style.setProperty("--font-size", size + "px");
       localStorage.setItem("tp-font-size", size);
       fontSizeInput.value = size;
@@ -562,8 +607,18 @@
     fontSizeInput.addEventListener("change", () => {
       applyFontSize(fontSizeInput.value);
     });
-    fontSizeInput.addEventListener("input", () => {
-      applyFontSize(fontSizeInput.value);
+    fontSizeInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        applyFontSize(fontSizeInput.value);
+        fontSizeInput.blur();
+      }
+    });
+
+    fontSizeMinus.addEventListener("click", () => {
+      applyFontSize(parseInt(fontSizeInput.value, 10) - 1);
+    });
+    fontSizePlus.addEventListener("click", () => {
+      applyFontSize(parseInt(fontSizeInput.value, 10) + 1);
     });
 
     translateSelect.addEventListener("change", () => {
