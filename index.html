@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Third Position Wiki</title>
+  <link rel="icon" type="image/png" href="tpwikilogo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -73,10 +74,11 @@
       white-space: nowrap;
     }
     .logo img {
-      height: 34px;
+      height: 36px;
       width: auto;
       display: block;
-      border-radius: 3px;
+      border-radius: 4px;
+      object-fit: contain;
     }
     .search-box {
       flex: 1;
@@ -271,7 +273,7 @@
 <body>
   <header class="site-header">
     <a href="index.html" class="logo">
-      <img src="https://github.com/tpvalues/TP-wiki/blob/main/.github/tpwikilogo.png" alt="Third Position Wiki">
+      <img src="tpwikilogo.png" alt="Third Position Wiki">
       Third Position Wiki
     </a>
     <form class="search-box" action="#" method="get" onsubmit="return false;">
