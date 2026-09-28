@@ -328,16 +328,33 @@
     }
     .infobox-logo {
       text-align: center;
-      padding: 0.9rem 0.6rem 0.5rem;
+      padding: 0.9rem 0.6rem 0.25rem;
     }
     .infobox-logo img {
       max-width: 140px;
       max-height: 140px;
       object-fit: contain;
     }
-    .infobox-native {
+    .infobox-caption {
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      padding: 0 0.6rem 0.7rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .infobox-flag {
+      text-align: center;
+      padding: 0.8rem 0.6rem 0.25rem;
+    }
+    .infobox-flag img {
+      max-width: 160px;
+      max-height: 100px;
+      object-fit: contain;
+      border: 1px solid var(--border);
+    }
+    .infobox-flag-caption {
+      text-align: center;
+      font-size: 0.78rem;
       color: var(--text-muted);
       padding: 0 0.6rem 0.7rem;
       border-bottom: 1px solid var(--border);
@@ -501,41 +518,45 @@
       </ul>
     </aside>
     <main class="main-content">
-      <h1><span class="notranslate">Justicialist Party</span></h1>
+      <h1 class="notranslate">Justicialist Party (In Spanish: Partido Justicialista, PJ)</h1>
       <p class="subtitle">From Third Position Wiki</p>
 
       <div class="article-body">
         <div class="article-text">
           <p>
-            The <strong class="notranslate">Justicialist Party</strong> (<span class="notranslate">Partido Justicialista</span>, PJ) is an Argentine political party founded in 1946 by <span class="notranslate">Juan Perón</span> and <span class="notranslate">Eva Perón</span>. It is the main organisational expression of <span class="notranslate">Peronism</span> and has been one of the dominant forces in Argentine politics since the mid-20th century.
-          </p>
-          <p>
-            The party combines elements of nationalism, labour organising and a third-position approach that rejects both liberal capitalism and orthodox Marxism. Its ideology is commonly described as <span class="notranslate">Peronism</span> and has also been associated with national syndicalist currents.
+            <!-- Lead / introduction goes here -->
           </p>
 
           <h2>History</h2>
           <p>
-            <!-- Add history content here -->
+            <!-- History content -->
           </p>
 
           <h2>Ideology</h2>
           <p>
-            <!-- Add ideology content here -->
+            <!-- Ideology content -->
           </p>
 
           <h2>Organisation</h2>
           <p>
-            <!-- Add organisation content here -->
+            <!-- Organisation content -->
           </p>
         </div>
 
-        <!-- ========== INFOBOX (edit the rows below) ========== -->
+        <!-- ========== INFOBOX ========== -->
         <aside class="infobox">
           <div class="infobox-header notranslate">Justicialist Party</div>
+
           <div class="infobox-logo">
-            <img src="logos/peronism.png" alt="Justicialist Party logo">
+            <img src="logos/peronism.png" alt="Logo of the Justicialist Party">
           </div>
-          <div class="infobox-native notranslate">Partido Justicialista</div>
+          <div class="infobox-caption">Logo of the Justicialist Party</div>
+
+          <div class="infobox-flag">
+            <img src="logos/peronism-flag.png" alt="Flag of the Justicialist Party">
+          </div>
+          <div class="infobox-flag-caption">Flag of the Justicialist Party</div>
+
           <table>
             <tr>
               <th>Founder(s)</th>
@@ -565,7 +586,7 @@
               <th>Preceded by</th>
               <td class="notranslate">Labour Party</td>
             </tr>
-            <!-- 
+            <!--
             <tr>
               <th>Succeeded by</th>
               <td class="notranslate">—</td>
