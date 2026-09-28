@@ -628,3 +628,63 @@
   </script>
 </body>
 </html>
+
+<script>
+  const pages = [
+    {
+      title: "Justicialist Party",
+      url: "tpmovements/justicialist-party.html",
+      keywords: [
+        "justicialist party",
+        "partido justicialista",
+        "pj",
+        "peronism",
+        "perónism",
+        "peronist",
+        "juan perón",
+        "juan peron",
+        "eva perón",
+        "eva peron"
+      ]
+    }
+    // add more pages here later
+  ];
+
+  function getPrefix() {
+    const path = window.location.pathname;
+    if (
+      path.includes("/tpmovements/") ||
+      path.includes("/tpideologies/") ||
+      path.includes("/people/") ||
+      path.includes("/miscmovements/") ||
+      path.includes("/definitions/")
+    ) {
+      return "../";
+    }
+    return "";
+  }
+
+  const form = document.querySelector(".search-box");
+  const input = document.querySelector(".search-box input");
+
+  if (form && input) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const q = input.value.trim().toLowerCase();
+      if (!q) return;
+
+      const match = pages.find(function (p) {
+        if (p.title.toLowerCase().includes(q)) return true;
+        return p.keywords.some(function (k) {
+          return k.includes(q) || q.includes(k);
+        });
+      });
+
+      if (match) {
+        window.location.href = getPrefix() + match.url;
+      } else {
+        alert('No page found for "' + input.value + '"');
+      }
+    });
+  }
+</script>
