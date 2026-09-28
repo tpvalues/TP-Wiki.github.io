@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Justicialist Party - Third Position Wiki</title>
+  <link rel="icon" type="image/png" href="../tpwikilogo.png">
+  <link rel="apple-touch-icon" href="../tpwikilogo.png">
+  <script>
+    (function() {
+      var t = localStorage.getItem("tp-theme");
+      if (t === "dark" || (!t && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+      var f = localStorage.getItem("tp-font-family");
+      if (f) document.documentElement.style.setProperty("--font-family", f);
+      var s = localStorage.getItem("tp-font-size");
+      if (s) document.documentElement.style.setProperty("--font-size", s + "px");
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&family=Source+Serif+4:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f4f5f7;
+      --bg-card: #ffffff;
+      --bg-sidebar: #f0f1f4;
+      --text: #1a1c20;
+      --text-muted: #5c6370;
+      --border: #c8cdd5;
+      --accent: #2b4acb;
+      --accent-hover: #1e36a0;
+      --header-bg: #ffffff;
+      --link: #2b4acb;
+      --link-visited: #5a3d9a;
+      --active-bg: #e8ecff;
+      --welcome-bg: #eef0f5;
+      --infobox-bg: #f8f9fa;
+      --infobox-header: #eaecf0;
+      --font-family: "Lexend", system-ui, sans-serif;
+      --font-size: 16px;
+    }
+    [data-theme="dark"] {
+      --bg: #12141a;
+      --bg-card: #1c1f28;
+      --bg-sidebar: #181b23;
+      --text: #e6e8ee;
+      --text-muted: #9ba3b5;
+      --border: #2e3340;
+      --accent: #6b8aff;
+      --accent-hover: #8ba4ff;
+      --header-bg: #1c1f28;
+      --link: #8ba4ff;
+      --link-visited: #b39ddb;
+      --active-bg: #252a3a;
+      --welcome-bg: #222632;
+      --infobox-bg: #1a1d27;
+      --infobox-header: #252a3a;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: var(--font-size); }
+    body {
+      font-family: var(--font-family);
+      line-height: 1.65;
+      color: var(--text);
+      background: var(--bg);
+      transition: background 0.2s, color 0.2s;
+    }
+    a { color: var(--link); text-decoration: none; }
+    a:hover { text-decoration: underline; color: var(--accent-hover); }
+    a:visited { color: var(--link-visited); }
+    .site-header {
+      background: var(--header-bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0.55rem 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 1.3rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: var(--text) !important;
+      text-decoration: none !important;
+      white-space: nowrap;
+    }
+    .logo:visited, .logo:hover, .logo:active {
+      color: var(--text) !important;
+      text-decoration: none !important;
+    }
+    .logo img {
+      height: 36px;
+      width: auto;
+      display: block;
+      border-radius: 4px;
+      object-fit: contain;
+    }
+    .search-box {
+      flex: 1;
+      max-width: 360px;
+      display: flex;
+    }
+    .search-box input {
+      flex: 1;
+      padding: 0.42rem 0.7rem;
+      border: 1px solid var(--border);
+      border-right: none;
+      border-radius: 4px 0 0 4px;
+      font-size: 0.92rem;
+      font-family: inherit;
+      background: var(--bg-card);
+      color: var(--text);
+    }
+    .search-box button {
+      padding: 0.42rem 0.85rem;
+      background: var(--bg-sidebar);
+      border: 1px solid var(--border);
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      font-size: 0.88rem;
+      font-family: inherit;
+      color: var(--text);
+    }
+    .search-box button:hover { background: var(--active-bg); }
+    .header-right {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+    .header-links {
+      display: flex;
+      gap: 0.9rem;
+      font-size: 0.88rem;
+    }
+    .header-links a { color: var(--text); }
+    .header-links a:visited { color: var(--text); }
+    .theme-toggle, .settings-btn, .translate-btn {
+      background: var(--bg-sidebar);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.3rem 0.65rem;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-family: inherit;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      height: 32px;
+    }
+    .theme-toggle:hover, .settings-btn:hover, .translate-btn:hover { background: var(--active-bg); }
+    .settings-panel, .translate-panel {
+      display: none;
+      position: absolute;
+      top: 52px;
+      right: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.15rem;
+      z-index: 200;
+      min-width: 240px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    .settings-panel.open, .translate-panel.open { display: block; }
+    .settings-panel label, .translate-panel label {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+    }
+    .settings-panel select, .translate-panel select {
+      width: 100%;
+      padding: 0.35rem 0.5rem;
+      margin-bottom: 0.85rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.88rem;
+    }
+    .size-control {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+    .size-control button {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg-sidebar);
+      color: var(--text);
+      font-size: 1.1rem;
+      cursor: pointer;
+      font-family: inherit;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .size-control button:hover { background: var(--active-bg); }
+    .size-control input[type="number"] {
+      width: 64px;
+      height: 32px;
+      text-align: center;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+      -moz-appearance: textfield;
+    }
+    .size-control input[type="number"]::-webkit-outer-spin-button,
+    .size-control input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+    .size-control span { font-size: 0.82rem; color: var(--text-muted); }
+    #google_translate_element { display: none; }
+    .goog-te-banner-frame { display: none !important; }
+    body { top: 0 !important; }
+    .goog-te-gadget { font-size: 0 !important; }
+    .page-wrapper {
+      display: flex;
+      max-width: 1260px;
+      margin: 0 auto;
+      min-height: calc(100vh - 54px);
+    }
+    .sidebar {
+      width: 200px;
+      flex-shrink: 0;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      padding: 1rem 0.7rem;
+      font-size: 0.88rem;
+    }
+    .sidebar h3 {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin: 1rem 0 0.3rem 0.35rem;
+      font-weight: 500;
+    }
+    .sidebar h3:first-child { margin-top: 0.15rem; }
+    .sidebar ul { list-style: none; }
+    .sidebar li a {
+      display: block;
+      padding: 0.28rem 0.4rem;
+      color: var(--link);
+      border-radius: 3px;
+    }
+    .sidebar li a:hover { background: var(--active-bg); text-decoration: none; }
+    .sidebar li a.active {
+      background: var(--active-bg);
+      font-weight: 600;
+      color: var(--text);
+    }
+    .main-content {
+      flex: 1;
+      background: var(--bg-card);
+      padding: 1.5rem 1.8rem 3rem;
+      border-left: 1px solid var(--border);
+      min-width: 0;
+    }
+    .main-content h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.3rem;
+      margin-bottom: 0.4rem;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.2rem;
+    }
+    .article-body {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    .article-text {
+      flex: 1;
+      min-width: 0;
+      font-size: 1.02rem;
+    }
+    .article-text p { margin-bottom: 1.1rem; }
+    .article-text h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.2rem;
+      margin: 1.6rem 0 0.8rem;
+    }
+    .infobox {
+      width: 280px;
+      flex-shrink: 0;
+      background: var(--infobox-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-size: 0.88rem;
+      overflow: hidden;
+    }
+    .infobox-header {
+      background: var(--infobox-header);
+      text-align: center;
+      padding: 0.7rem 0.6rem;
+      font-weight: 600;
+      font-size: 1.05rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .infobox-logo {
+      text-align: center;
+      padding: 0.9rem 0.6rem 0.5rem;
+    }
+    .infobox-logo img {
+      max-width: 140px;
+      max-height: 140px;
+      object-fit: contain;
+    }
+    .infobox-native {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      padding: 0 0.6rem 0.7rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .infobox table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .infobox th {
+      text-align: left;
+      padding: 0.35rem 0.6rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      width: 42%;
+      vertical-align: top;
+    }
+    .infobox td {
+      padding: 0.35rem 0.6rem;
+      vertical-align: top;
+    }
+    .infobox tr:nth-child(even) { background: rgba(0,0,0,0.03); }
+    [data-theme="dark"] .infobox tr:nth-child(even) { background: rgba(255,255,255,0.03); }
+    .site-footer {
+      background: var(--bg-sidebar);
+      border-top: 1px solid var(--border);
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .site-footer a { color: var(--link); }
+    @media (max-width: 900px) {
+      .article-body { flex-direction: column; }
+      .infobox { width: 100%; max-width: 320px; margin: 0 auto 1.5rem; }
+    }
+    @media (max-width: 800px) {
+      .page-wrapper { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 0.7rem;
+      }
+      .sidebar ul { display: flex; flex-wrap: wrap; gap: 0.15rem 0.5rem; }
+      .sidebar h3 { width: 100%; margin-top: 0.55rem; }
+      .header-links { display: none; }
+      .main-content { padding: 1.2rem 1rem 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="../index.html" class="logo">
+      <img src="../tpwikilogo.png" alt="Third Position Wiki">
+      Third Position Wiki
+    </a>
+    <form class="search-box" action="#" method="get" onsubmit="return false;">
+      <input type="search" name="q" placeholder="Search Third Position Wiki" aria-label="Search">
+      <button type="submit">Search</button>
+    </form>
+    <div class="header-right">
+      <nav class="header-links">
+        <a href="../index.html">Main Page</a>
+        <a href="../definitions.html">Definitions</a>
+        <a href="#">About</a>
+      </nav>
+      <button class="translate-btn" id="translateBtn" type="button">
+        <span>🗫</span>
+        <span>Translate</span>
+      </button>
+      <div class="translate-panel" id="translatePanel">
+        <label for="translateSelect">Language</label>
+        <select id="translateSelect">
+          <option value="">Original (English)</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="es">Español</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+          <option value="nl">Nederlands</option>
+          <option value="pl">Polski</option>
+          <option value="sv">Svenska</option>
+          <option value="da">Dansk</option>
+          <option value="fi">Suomi</option>
+          <option value="no">Norsk</option>
+          <option value="cs">Čeština</option>
+          <option value="sk">Slovenčina</option>
+          <option value="hu">Magyar</option>
+          <option value="ro">Română</option>
+          <option value="bg">Български</option>
+          <option value="el">Ελληνικά</option>
+          <option value="hr">Hrvatski</option>
+          <option value="sr">Српски</option>
+          <option value="sl">Slovenščina</option>
+          <option value="lt">Lietuvių</option>
+          <option value="lv">Latviešu</option>
+          <option value="et">Eesti</option>
+          <option value="ga">Gaeilge</option>
+          <option value="uk">Українська</option>
+          <option value="ru">Русский</option>
+          <option value="zh-CN">中文 (简体)</option>
+          <option value="zh-TW">中文 (繁體)</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="hi">हिन्दी</option>
+          <option value="ar">العربية</option>
+          <option value="tr">Türkçe</option>
+          <option value="th">ไทย</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="ms">Bahasa Melayu</option>
+          <option value="sw">Kiswahili</option>
+          <option value="af">Afrikaans</option>
+        </select>
+      </div>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme">
+        <span id="themeIcon">◐</span>
+        <span id="themeLabel">Dark</span>
+      </button>
+      <button class="settings-btn" id="settingsBtn" type="button" aria-label="Display settings">
+        <span>✎</span>
+        <span>Aa</span>
+      </button>
+      <div class="settings-panel" id="settingsPanel">
+        <label for="fontFamily">Font</label>
+        <select id="fontFamily">
+          <option value='"Lexend", system-ui, sans-serif'>Lexend</option>
+          <option value='"Source Serif 4", "Times New Roman", Times, serif'>Source Serif</option>
+          <option value='"Times New Roman", Times, serif'>Times New Roman</option>
+          <option value='Georgia, "Times New Roman", serif'>Georgia</option>
+          <option value='"IBM Plex Sans", system-ui, sans-serif'>IBM Plex Sans</option>
+          <option value='system-ui, -apple-system, sans-serif'>System UI</option>
+        </select>
+        <label for="fontSize">Font size</label>
+        <div class="size-control">
+          <button type="button" id="fontSizeMinus" aria-label="Decrease">−</button>
+          <input type="number" id="fontSize" min="12" max="24" step="1" value="16">
+          <button type="button" id="fontSizePlus" aria-label="Increase">+</button>
+          <span>px</span>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div id="google_translate_element"></div>
+  <div class="page-wrapper">
+    <aside class="sidebar">
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="../index.html">Main Page</a></li>
+        <li><a href="../definitions.html">Definitions</a></li>
+        <li><a href="../tpideologies/">Ideologies</a></li>
+        <li><a href="./" class="active">Movements</a></li>
+        <li><a href="../people/">Figures</a></li>
+        <li><a href="../miscmovements/">Associated Movements</a></li>
+      </ul>
+      <h3>Tools</h3>
+      <ul>
+        <li><a href="#">Recent changes</a></li>
+        <li><a href="#">Random page</a></li>
+        <li><a href="#">Help</a></li>
+      </ul>
+    </aside>
+    <main class="main-content">
+      <h1><span class="notranslate">Justicialist Party</span></h1>
+      <p class="subtitle">From Third Position Wiki</p>
+
+      <div class="article-body">
+        <div class="article-text">
+          <p>
+            The <strong class="notranslate">Justicialist Party</strong> (<span class="notranslate">Partido Justicialista</span>, PJ) is an Argentine political party founded in 1946 by <span class="notranslate">Juan Perón</span> and <span class="notranslate">Eva Perón</span>. It is the main organisational expression of <span class="notranslate">Peronism</span> and has been one of the dominant forces in Argentine politics since the mid-20th century.
+          </p>
+          <p>
+            The party combines elements of nationalism, labour organising and a third-position approach that rejects both liberal capitalism and orthodox Marxism. Its ideology is commonly described as <span class="notranslate">Peronism</span> and has also been associated with national syndicalist currents.
+          </p>
+
+          <h2>History</h2>
+          <p>
+            <!-- Add history content here -->
+          </p>
+
+          <h2>Ideology</h2>
+          <p>
+            <!-- Add ideology content here -->
+          </p>
+
+          <h2>Organisation</h2>
+          <p>
+            <!-- Add organisation content here -->
+          </p>
+        </div>
+
+        <!-- ========== INFOBOX (edit the rows below) ========== -->
+        <aside class="infobox">
+          <div class="infobox-header notranslate">Justicialist Party</div>
+          <div class="infobox-logo">
+            <img src="logos/peronism.png" alt="Justicialist Party logo">
+          </div>
+          <div class="infobox-native notranslate">Partido Justicialista</div>
+          <table>
+            <tr>
+              <th>Founder(s)</th>
+              <td class="notranslate">Juan Perón<br>Eva Perón</td>
+            </tr>
+            <tr>
+              <th>Founded</th>
+              <td>21 July 1946</td>
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td>Active</td>
+            </tr>
+            <tr>
+              <th>Country</th>
+              <td class="notranslate">Argentina</td>
+            </tr>
+            <tr>
+              <th>Active in</th>
+              <td class="notranslate">Argentine Republic</td>
+            </tr>
+            <tr>
+              <th>Ideology</th>
+              <td class="notranslate">Peronism<br>National Syndicalism</td>
+            </tr>
+            <tr>
+              <th>Preceded by</th>
+              <td class="notranslate">Labour Party</td>
+            </tr>
+            <!-- 
+            <tr>
+              <th>Succeeded by</th>
+              <td class="notranslate">—</td>
+            </tr>
+            -->
+          </table>
+        </aside>
+        <!-- ========== END INFOBOX ========== -->
+      </div>
+    </main>
+  </div>
+  <footer class="site-footer">
+    <p>
+      Third Position Wiki · Independent reference project ·
+      <a href="#">About</a> ·
+      <a href="#">Contact</a>
+    </p>
+  </footer>
+
+  <script>
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'fr,de,es,it,pt,nl,pl,sv,da,fi,no,cs,sk,hu,ro,bg,el,hr,sr,sl,lt,lv,et,ga,uk,ru,zh-CN,zh-TW,ja,ko,hi,ar,tr,th,vi,id,ms,sw,af',
+        layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <script>
+    const root = document.documentElement;
+    const toggle = document.getElementById("themeToggle");
+    const icon = document.getElementById("themeIcon");
+    const label = document.getElementById("themeLabel");
+    const settingsBtn = document.getElementById("settingsBtn");
+    const settingsPanel = document.getElementById("settingsPanel");
+    const translateBtn = document.getElementById("translateBtn");
+    const translatePanel = document.getElementById("translatePanel");
+    const translateSelect = document.getElementById("translateSelect");
+    const fontFamilySelect = document.getElementById("fontFamily");
+    const fontSizeInput = document.getElementById("fontSize");
+    const fontSizeMinus = document.getElementById("fontSizeMinus");
+    const fontSizePlus = document.getElementById("fontSizePlus");
+
+    function applyTheme(theme) {
+      root.setAttribute("data-theme", theme);
+      if (theme === "dark") {
+        icon.textContent = "◑";
+        label.textContent = "Light";
+      } else {
+        icon.textContent = "◐";
+        label.textContent = "Dark";
+      }
+      localStorage.setItem("tp-theme", theme);
+    }
+    function applyFontFamily(value) {
+      root.style.setProperty("--font-family", value);
+      localStorage.setItem("tp-font-family", value);
+      fontFamilySelect.value = value;
+    }
+    function applyFontSize(px) {
+      let size = parseInt(px, 10);
+      if (isNaN(size)) size = 16;
+      size = Math.min(24, Math.max(12, size));
+      root.style.setProperty("--font-size", size + "px");
+      localStorage.setItem("tp-font-size", size);
+      fontSizeInput.value = size;
+    }
+    function doTranslate(lang) {
+      var select = document.querySelector('.goog-te-combo');
+      if (!select) return;
+      select.value = lang || '';
+      select.dispatchEvent(new Event('change'));
+    }
+
+    applyTheme(root.getAttribute("data-theme") || "light");
+    const savedFont = localStorage.getItem("tp-font-family");
+    if (savedFont) applyFontFamily(savedFont);
+    const savedSize = localStorage.getItem("tp-font-size");
+    if (savedSize) applyFontSize(savedSize);
+
+    toggle.addEventListener("click", () => {
+      applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
+    });
+    settingsBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      settingsPanel.classList.toggle("open");
+      translatePanel.classList.remove("open");
+    });
+    translateBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      translatePanel.classList.toggle("open");
+      settingsPanel.classList.remove("open");
+    });
+    document.addEventListener("click", (e) => {
+      if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) settingsPanel.classList.remove("open");
+      if (!translatePanel.contains(e.target) && e.target !== translateBtn) translatePanel.classList.remove("open");
+    });
+    fontFamilySelect.addEventListener("change", () => applyFontFamily(fontFamilySelect.value));
+    fontSizeInput.addEventListener("change", () => applyFontSize(fontSizeInput.value));
+    fontSizeInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") { applyFontSize(fontSizeInput.value); fontSizeInput.blur(); }
+    });
+    fontSizeMinus.addEventListener("click", () => applyFontSize(parseInt(fontSizeInput.value, 10) - 1));
+    fontSizePlus.addEventListener("click", () => applyFontSize(parseInt(fontSizeInput.value, 10) + 1));
+    translateSelect.addEventListener("change", () => {
+      doTranslate(translateSelect.value);
+      translatePanel.classList.remove("open");
+    });
+  </script>
+</body>
+</html>
