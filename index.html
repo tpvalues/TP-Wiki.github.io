@@ -674,26 +674,9 @@
     });
   </script>
 
+  <script src="search-data.js"></script>
   <script>
-    const pages = [
-      {
-        title: "Justicialist Party",
-        url: "tpmovements/justicialist-party.html",
-        cat: "TP Movements",
-        keywords: [
-          "justicialist party",
-          "partido justicialista",
-          "pj",
-          "peronism",
-          "perónism",
-          "peronist",
-          "juan perón",
-          "juan peron",
-          "eva perón",
-          "eva peron"
-        ]
-      }
-    ];
+    const pages = window.TP_PAGES || [];
 
     function getPrefix() {
       const path = window.location.pathname;
@@ -714,7 +697,7 @@
       if (!q) return [];
       return pages.filter(function (p) {
         if (p.title.toLowerCase().includes(q)) return true;
-        return p.keywords.some(function (k) {
+        return (p.keywords || []).some(function (k) {
           return k.includes(q) || q.includes(k);
         });
       }).slice(0, 8);
