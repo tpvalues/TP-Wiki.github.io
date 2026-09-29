@@ -54,5 +54,18 @@ window.TP_PAGES = [
       "codreanu",
       "garda de fier"
     ]
+  },
+  {
+    title: "Political Circle "Zveno"",
+    url: "tpmovements/zveno.html",
+    cat: "TP Movements",
+    keywords: [
+      "zveno",
+      "Political Circle Zveno",
+      "Kimon Georgiev",
+      "Damyan Velchev",
+      "Dimo Kazasov",
+      "People's Union Zveno"
+    ]
   }
 ];
