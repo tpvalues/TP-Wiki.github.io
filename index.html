@@ -106,8 +106,12 @@
       max-width: 360px;
       display: flex;
     }
-    .search-box input {
+    .search-wrap {
       flex: 1;
+      position: relative;
+    }
+    .search-wrap input {
+      width: 100%;
       padding: 0.42rem 0.7rem;
       border: 1px solid var(--border);
       border-right: none;
@@ -128,6 +132,58 @@
       color: var(--text);
     }
     .search-box button:hover { background: var(--active-bg); }
+    .search-suggestions {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-top: none;
+      border-radius: 0 0 6px 6px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+      z-index: 300;
+      max-height: 320px;
+      overflow-y: auto;
+    }
+    .search-suggestions.open { display: block; }
+    .suggestion-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.55rem 0.85rem;
+      cursor: pointer;
+      font-size: 0.92rem;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+    }
+    .suggestion-item:last-child { border-bottom: none; }
+    .suggestion-item:hover,
+    .suggestion-item.active {
+      background: var(--active-bg);
+      text-decoration: none;
+      color: var(--text);
+    }
+    .suggestion-title { font-weight: 500; }
+    .suggestion-tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: var(--bg-sidebar);
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      padding: 0.15rem 0.45rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .suggestion-empty {
+      padding: 0.7rem 0.85rem;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
     .header-right {
       margin-left: auto;
       display: flex;
@@ -354,7 +410,10 @@
       Third Position Wiki
     </a>
     <form class="search-box" action="#" method="get" onsubmit="return false;">
-      <input type="search" name="q" placeholder="Search Third Position Wiki" aria-label="Search">
+      <div class="search-wrap">
+        <input type="search" name="q" placeholder="Search Third Position Wiki" aria-label="Search" autocomplete="off">
+        <div class="search-suggestions" id="searchSuggestions"></div>
+      </div>
       <button type="submit">Search</button>
     </form>
     <div class="header-right">
@@ -533,13 +592,11 @@
       }
       localStorage.setItem("tp-theme", theme);
     }
-
     function applyFontFamily(value) {
       root.style.setProperty("--font-family", value);
       localStorage.setItem("tp-font-family", value);
       fontFamilySelect.value = value;
     }
-
     function applyFontSize(px) {
       let size = parseInt(px, 10);
       if (isNaN(size)) size = 16;
@@ -548,7 +605,6 @@
       localStorage.setItem("tp-font-size", size);
       fontSizeInput.value = size;
     }
-
     function doTranslate(lang) {
       if (!lang) {
         var combo = document.querySelector('.goog-te-combo');
@@ -567,10 +623,8 @@
 
     const currentTheme = root.getAttribute("data-theme") || "light";
     applyTheme(currentTheme);
-
     const savedFont = localStorage.getItem("tp-font-family");
     if (savedFont) applyFontFamily(savedFont);
-
     const savedSize = localStorage.getItem("tp-font-size");
     if (savedSize) applyFontSize(savedSize);
 
@@ -578,19 +632,16 @@
       const current = root.getAttribute("data-theme");
       applyTheme(current === "dark" ? "light" : "dark");
     });
-
     settingsBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       settingsPanel.classList.toggle("open");
       translatePanel.classList.remove("open");
     });
-
     translateBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       translatePanel.classList.toggle("open");
       settingsPanel.classList.remove("open");
     });
-
     document.addEventListener("click", (e) => {
       if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) {
         settingsPanel.classList.remove("open");
@@ -599,11 +650,9 @@
         translatePanel.classList.remove("open");
       }
     });
-
     fontFamilySelect.addEventListener("change", () => {
       applyFontFamily(fontFamilySelect.value);
     });
-
     fontSizeInput.addEventListener("change", () => {
       applyFontSize(fontSizeInput.value);
     });
@@ -613,78 +662,155 @@
         fontSizeInput.blur();
       }
     });
-
     fontSizeMinus.addEventListener("click", () => {
       applyFontSize(parseInt(fontSizeInput.value, 10) - 1);
     });
     fontSizePlus.addEventListener("click", () => {
       applyFontSize(parseInt(fontSizeInput.value, 10) + 1);
     });
-
     translateSelect.addEventListener("change", () => {
       doTranslate(translateSelect.value);
       translatePanel.classList.remove("open");
     });
   </script>
-</body>
-</html>
 
-<script>
-  const pages = [
-    {
-      title: "Justicialist Party",
-      url: "tpmovements/justicialist-party.html",
-      keywords: [
-        "justicialist party",
-        "partido justicialista",
-        "pj",
-        "peronism",
-        "perónism",
-        "peronist",
-        "juan perón",
-        "juan peron",
-        "eva perón",
-        "eva peron"
-      ]
+  <script>
+    const pages = [
+      {
+        title: "Justicialist Party",
+        url: "tpmovements/justicialist-party.html",
+        cat: "TP Movements",
+        keywords: [
+          "justicialist party",
+          "partido justicialista",
+          "pj",
+          "peronism",
+          "perónism",
+          "peronist",
+          "juan perón",
+          "juan peron",
+          "eva perón",
+          "eva peron"
+        ]
+      }
+    ];
+
+    function getPrefix() {
+      const path = window.location.pathname;
+      if (
+        path.includes("/tpmovements/") ||
+        path.includes("/tpideologies/") ||
+        path.includes("/people/") ||
+        path.includes("/miscmovements/") ||
+        path.includes("/definitions/")
+      ) {
+        return "../";
+      }
+      return "";
     }
-    // add more pages here later
-  ];
 
-  function getPrefix() {
-    const path = window.location.pathname;
-    if (
-      path.includes("/tpmovements/") ||
-      path.includes("/tpideologies/") ||
-      path.includes("/people/") ||
-      path.includes("/miscmovements/") ||
-      path.includes("/definitions/")
-    ) {
-      return "../";
-    }
-    return "";
-  }
-
-  const form = document.querySelector(".search-box");
-  const input = document.querySelector(".search-box input");
-
-  if (form && input) {
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const q = input.value.trim().toLowerCase();
-      if (!q) return;
-
-      const match = pages.find(function (p) {
+    function searchPages(q) {
+      q = q.trim().toLowerCase();
+      if (!q) return [];
+      return pages.filter(function (p) {
         if (p.title.toLowerCase().includes(q)) return true;
         return p.keywords.some(function (k) {
           return k.includes(q) || q.includes(k);
         });
+      }).slice(0, 8);
+    }
+
+    const form = document.querySelector(".search-box");
+    const input = document.querySelector(".search-box input");
+    const box = document.getElementById("searchSuggestions");
+    let activeIndex = -1;
+
+    function renderSuggestions(matches) {
+      if (!matches.length) {
+        box.innerHTML = '<div class="suggestion-empty">No results</div>';
+        box.classList.add("open");
+        return;
+      }
+      const prefix = getPrefix();
+      box.innerHTML = matches.map(function (p, i) {
+        return (
+          '<a class="suggestion-item" href="' + prefix + p.url + '" data-index="' + i + '">' +
+            '<span class="suggestion-title">' + p.title + '</span>' +
+            '<span class="suggestion-tag">' + p.cat + '</span>' +
+          '</a>'
+        );
+      }).join("");
+      box.classList.add("open");
+      activeIndex = -1;
+    }
+
+    function closeSuggestions() {
+      box.classList.remove("open");
+      box.innerHTML = "";
+      activeIndex = -1;
+    }
+
+    function highlight(index) {
+      const items = box.querySelectorAll(".suggestion-item");
+      items.forEach(function (el) { el.classList.remove("active"); });
+      if (index >= 0 && index < items.length) {
+        items[index].classList.add("active");
+        activeIndex = index;
+      }
+    }
+
+    if (form && input && box) {
+      input.addEventListener("input", function () {
+        const q = input.value;
+        if (q.trim().length < 1) {
+          closeSuggestions();
+          return;
+        }
+        renderSuggestions(searchPages(q));
       });
 
-      if (match) {
-        window.location.href = getPrefix() + match.url;
-      } else {
-        alert('No page found for "' + input.value + '"');
-      }
-    });
-  }
-</script>
+      input.addEventListener("keydown", function (e) {
+        const items = box.querySelectorAll(".suggestion-item");
+        if (!box.classList.contains("open") || !items.length) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            const matches = searchPages(input.value);
+            if (matches.length) {
+              window.location.href = getPrefix() + matches[0].url;
+            }
+          }
+          return;
+        }
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          highlight(Math.min(activeIndex + 1, items.length - 1));
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          highlight(Math.max(activeIndex - 1, 0));
+        } else if (e.key === "Enter") {
+          e.preventDefault();
+          if (activeIndex >= 0 && items[activeIndex]) {
+            window.location.href = items[activeIndex].href;
+          } else if (items[0]) {
+            window.location.href = items[0].href;
+          }
+        } else if (e.key === "Escape") {
+          closeSuggestions();
+        }
+      });
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const matches = searchPages(input.value);
+        if (matches.length) {
+          window.location.href = getPrefix() + matches[0].url;
+        }
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!form.contains(e.target)) closeSuggestions();
+      });
+    }
+  </script>
+</body>
+</html>
