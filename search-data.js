@@ -24,7 +24,9 @@ window.TP_PAGES = [
       "le faisceau",
       "faisceau",
       "georges valois",
-      "valois"
+      "valois",
+      "the fasces",
+      "fasces"
     ]
   }
 ];
