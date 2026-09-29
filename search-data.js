@@ -28,5 +28,18 @@ window.TP_PAGES = [
       "the fasces",
       "fasces"
     ]
+  },
+  {
+    title: "Christian Social Party",
+    url: "tpmovements/christian-social-party.html",
+    cat: "TP Movements",
+    keywords: [
+      "CSP",
+      "dollfuss",
+      "christian social party",
+      "Christlichsoziale Partei",
+      "Karl Lueger",
+      "Lueger"
+    ]
   }
 ];
