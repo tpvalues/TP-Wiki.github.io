@@ -34,12 +34,12 @@ window.TP_PAGES = [
     url: "tpmovements/christian-social-party.html",
     cat: "TP Movements",
     keywords: [
-      "CSP",
+      "csp",
       "dollfuss",
       "christian social party",
-      "Christlichsoziale Partei",
-      "Karl Lueger",
-      "Lueger"
+      "christlichsoziale partei",
+      "karl lueger",
+      "lueger"
     ]
   },
   {
@@ -49,11 +49,10 @@ window.TP_PAGES = [
     keywords: [
       "iron guard",
       "legionarism",
-      "Corneliu Zelea Codreanu",
-      "Hora Sima",
-      "Codreanu",
-      "Garda de Fier"
+      "corneliu zelea codreanu",
+      "horia sima",
+      "codreanu",
+      "garda de fier"
     ]
-  },
-  {
+  }
 ];
