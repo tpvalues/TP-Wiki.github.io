@@ -41,5 +41,19 @@ window.TP_PAGES = [
       "Karl Lueger",
       "Lueger"
     ]
-  }
+  },
+  {
+    title: "Iron Guard",
+    url: "tpmovements/iron-guard.html",
+    cat: "TP Movements",
+    keywords: [
+      "iron guard",
+      "legionarism",
+      "Corneliu Zelea Codreanu",
+      "Hora Sima",
+      "Codreanu",
+      "Garda de Fier"
+    ]
+  },
+  {
 ];
