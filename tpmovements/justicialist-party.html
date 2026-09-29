@@ -61,7 +61,7 @@
       --infobox-header: #252a3a;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: var(--font-size); }
+    html { font-size: var(--font-size); scroll-behavior: smooth; }
     body {
       font-family: var(--font-family);
       line-height: 1.65;
@@ -356,6 +356,26 @@
       color: var(--text-muted);
       margin-bottom: 1.2rem;
     }
+    .contents-box {
+      background: var(--infobox-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.7rem 1rem 0.85rem;
+      margin-bottom: 1.4rem;
+      font-size: 0.9rem;
+      max-width: 280px;
+    }
+    .contents-box .contents-title {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+    .contents-box ol {
+      margin: 0;
+      padding-left: 1.3rem;
+    }
+    .contents-box li { margin: 0.2rem 0; }
+    .contents-box a { color: var(--link); }
     .article-body {
       display: flex;
       gap: 1.5rem;
@@ -373,6 +393,7 @@
       border-bottom: 1px solid var(--border);
       padding-bottom: 0.2rem;
       margin: 1.6rem 0 0.8rem;
+      scroll-margin-top: 70px;
     }
     .infobox {
       width: 280px;
@@ -451,14 +472,13 @@
       color: var(--text-muted);
     }
     .site-footer a { color: var(--link); }
-
     @media (max-width: 900px) {
       .header-links { display: none; }
       .search-box { max-width: none; }
       .article-body { flex-direction: column; }
       .infobox { width: 100%; max-width: 320px; margin: 0 auto 1.5rem; order: -1; }
+      .contents-box { max-width: 100%; }
     }
-
     @media (max-width: 640px) {
       .site-header {
         padding: 0.5rem 0.7rem;
@@ -535,7 +555,6 @@
         font-size: 0.78rem;
       }
     }
-
     @media (max-width: 380px) {
       .main-content h1 { font-size: 1.35rem; }
       .logo img { height: 28px; }
@@ -567,48 +586,7 @@
       </button>
       <div class="translate-panel" id="translatePanel">
         <label for="translateSelect">Language</label>
-        <select id="translateSelect">
-          <option value="">Original (English)</option>
-          <option value="fr">Français</option>
-          <option value="de">Deutsch</option>
-          <option value="es">Español</option>
-          <option value="it">Italiano</option>
-          <option value="pt">Português</option>
-          <option value="nl">Nederlands</option>
-          <option value="pl">Polski</option>
-          <option value="sv">Svenska</option>
-          <option value="da">Dansk</option>
-          <option value="fi">Suomi</option>
-          <option value="no">Norsk</option>
-          <option value="cs">Čeština</option>
-          <option value="sk">Slovenčina</option>
-          <option value="hu">Magyar</option>
-          <option value="ro">Română</option>
-          <option value="bg">Български</option>
-          <option value="el">Ελληνικά</option>
-          <option value="hr">Hrvatski</option>
-          <option value="sr">Српски</option>
-          <option value="sl">Slovenščina</option>
-          <option value="lt">Lietuvių</option>
-          <option value="lv">Latviešu</option>
-          <option value="et">Eesti</option>
-          <option value="ga">Gaeilge</option>
-          <option value="uk">Українська</option>
-          <option value="ru">Русский</option>
-          <option value="zh-CN">中文 (简体)</option>
-          <option value="zh-TW">中文 (繁體)</option>
-          <option value="ja">日本語</option>
-          <option value="ko">한국어</option>
-          <option value="hi">हिन्दी</option>
-          <option value="ar">العربية</option>
-          <option value="tr">Türkçe</option>
-          <option value="th">ไทย</option>
-          <option value="vi">Tiếng Việt</option>
-          <option value="id">Bahasa Indonesia</option>
-          <option value="ms">Bahasa Melayu</option>
-          <option value="sw">Kiswahili</option>
-          <option value="af">Afrikaans</option>
-        </select>
+        <select id="translateSelect"></select>
       </div>
       <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle theme" title="Theme">
         <span id="themeIcon">◐</span>
@@ -662,6 +640,14 @@
       <p class="subtitle">From Third Position Wiki</p>
       <div class="article-body">
         <div class="article-text">
+          <div class="contents-box">
+            <div class="contents-title">Contents</div>
+            <ol>
+              <li><a href="#history">History</a></li>
+              <li><a href="#ideology">Ideology</a></li>
+              <li><a href="#organisation">Organisation</a></li>
+            </ol>
+          </div>
           <p>
             <strong class="notranslate">Justicialist Party</strong> (Spanish: <span class="notranslate">Partido Justicialista</span>, <span class="notranslate">PJ</span>) is an Argentine political party.
           </p>
@@ -736,16 +722,7 @@
     </p>
   </footer>
 
-  <script>
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        includedLanguages: 'fr,de,es,it,pt,nl,pl,sv,da,fi,no,cs,sk,hu,ro,bg,el,hr,sr,sl,lt,lv,et,ga,uk,ru,zh-CN,zh-TW,ja,ko,hi,ar,tr,th,vi,id,ms,sw,af',
-        layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL,
-        autoDisplay: false
-      }, 'google_translate_element');
-    }
-  </script>
+  <script src="../translate.js"></script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <script>
@@ -787,12 +764,6 @@
       localStorage.setItem("tp-font-size", size);
       fontSizeInput.value = size;
     }
-    function doTranslate(lang) {
-      var select = document.querySelector('.goog-te-combo');
-      if (!select) return;
-      select.value = lang || '';
-      select.dispatchEvent(new Event('change'));
-    }
 
     applyTheme(root.getAttribute("data-theme") || "light");
     const savedFont = localStorage.getItem("tp-font-family");
@@ -825,7 +796,7 @@
     fontSizeMinus.addEventListener("click", () => applyFontSize(parseInt(fontSizeInput.value, 10) - 1));
     fontSizePlus.addEventListener("click", () => applyFontSize(parseInt(fontSizeInput.value, 10) + 1));
     translateSelect.addEventListener("change", () => {
-      doTranslate(translateSelect.value);
+      if (window.tpDoTranslate) window.tpDoTranslate(translateSelect.value);
       translatePanel.classList.remove("open");
     });
   </script>
