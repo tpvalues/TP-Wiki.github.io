@@ -870,7 +870,7 @@
 
     function searchPages(q) {
       q = q.trim().toLowerCase();
-      if (!q) return [];
+      if (q.length < 3) return [];
       return pages.filter(function (p) {
         if (p.title.toLowerCase().includes(q)) return true;
         return (p.keywords || []).some(function (k) {
