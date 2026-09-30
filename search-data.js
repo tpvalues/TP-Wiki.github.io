@@ -122,6 +122,35 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "Spanish Phalanx",
+    url: "tpmovements/falangaesp.html",
+    cat: "TP Movements",
+    keywords: [
+      "FE",
+      "Falange Española",
+      "Spanish Phalanx",
+      "José Antonio Primo de Rivera",
+      "Primo de Rivera",
+      "Falangism",
+      "Alfonso García Valdecasas",
+      "Julio Ruiz de Alda"
+    ]
+  },
+  {
+    title: "Councils of National-Syndicalist Offensive",
+    url: "tpmovements/JONS.html",
+    cat: "TP Movements",
+    keywords: [
+      "JONS",
+      "jonsism",
+      "Onésimo Redondo",
+      "Ramiro Ledesma Ramos",
+      "National Syndicalist",
+      "JCAH",
+      "Falangism"
+    ]
+  },
+  {
     title: 'Political Circle "Zveno"',
     url: "tpmovements/zveno.html",
     cat: "TP Movements",
