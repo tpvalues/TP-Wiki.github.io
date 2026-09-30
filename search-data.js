@@ -56,6 +56,19 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "Swedish Socialist Gathering",
+    url: "tpmovements/SSS.html",
+    cat: "TP Movements",
+    keywords: [
+      "SSS",
+      "Lindholm",
+      "Swedish Socialist Gathering",
+      "Sven Olov Lindholm",
+      "Svensk Socialistisk Samling",
+      "SNSP"
+    ]
+  },
+  {
     title: "National Radical Camp 'ABC'",
     url: "tpmovements/onr-abc.html",
     cat: "TP Movements",
