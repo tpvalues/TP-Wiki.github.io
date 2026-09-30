@@ -30,6 +30,19 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "Yugoslav National Movement",
+    url: "tpmovements/zbor.html",
+    cat: "TP Movements",
+    keywords: [
+      "ZBOR",
+      "Yugoslav National Movement",
+      "Dimitrije Ljotić",
+      "Yugoslavia",
+      "Ljotić",
+      "Југословенски Народни Покрет"
+    ]
+  },
+  {
     title: "National Radical Movement 'Falanga'",
     url: "tpmovements/onr-falanga.html",
     cat: "TP Movements",
