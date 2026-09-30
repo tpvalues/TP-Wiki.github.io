@@ -30,6 +30,32 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "National Radical Movement 'Falanga'",
+    url: "tpmovements/onr-falanga.html",
+    cat: "TP Movements",
+    keywords: [
+      "ONR",
+      "Falanga",
+      "Bolesław Piasecki",
+      "National Radical Movement",
+      "RNR-Falanga",
+      "Obóz Narodowo Radykalny"
+    ]
+  },
+  {
+    title: "National Radical Camp 'ABC'",
+    url: "tpmovements/onr-abc.html",
+    cat: "TP Movements",
+    keywords: [
+      "ONR",
+      "ABC",
+      "Rossman",
+      "National Radical Camp ABC",
+      "Henryk Rossman",
+      "Obóz Narodowo Radykalny"
+    ]
+  },
+  {
     title: "Christian Social Party",
     url: "tpmovements/christian-social-party.html",
     cat: "TP Movements",
