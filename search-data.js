@@ -56,6 +56,20 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "National Radical Camp",
+    url: "tpmovements/onr.html",
+    cat: "TP Movements",
+    keywords: [
+      "ONR",
+      "national radical camp",
+      "RNR",
+      "mosdorf",
+      "piasecki",
+      "rossman",
+      "obóz narodowo radykalny"
+    ]
+  },
+  {
     title: "Political Circle "Zveno"",
     url: "tpmovements/zveno.html",
     cat: "TP Movements",
