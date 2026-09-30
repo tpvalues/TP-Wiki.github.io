@@ -60,9 +60,9 @@ window.TP_PAGES = [
     url: "tpmovements/onr.html",
     cat: "TP Movements",
     keywords: [
-      "ONR",
+      "onr",
       "national radical camp",
-      "RNR",
+      "rnr",
       "mosdorf",
       "piasecki",
       "rossman",
@@ -70,16 +70,16 @@ window.TP_PAGES = [
     ]
   },
   {
-    title: "Political Circle "Zveno"",
+    title: 'Political Circle "Zveno"',
     url: "tpmovements/zveno.html",
     cat: "TP Movements",
     keywords: [
       "zveno",
-      "Political Circle Zveno",
-      "Kimon Georgiev",
-      "Damyan Velchev",
-      "Dimo Kazasov",
-      "People's Union Zveno"
+      "political circle zveno",
+      "kimon georgiev",
+      "damyan velchev",
+      "dimo kazasov",
+      "people's union zveno"
     ]
   }
 ];
