@@ -43,6 +43,20 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "Spanish Phalanx",
+    url: "tpmovements/falangaesp.html",
+    cat: "TP Movements",
+    keywords: [
+      "FE",
+      "Falange Española",
+      "José Antonio Primo de Rivera",
+      "Spanish Phalanx",
+      "Alfonso García Valdecasas",
+      "Julio Ruiz de Alda",
+      "Falangism"
+    ]
+  },
+  {
     title: "National Radical Movement 'Falanga'",
     url: "tpmovements/onr-falanga.html",
     cat: "TP Movements",
