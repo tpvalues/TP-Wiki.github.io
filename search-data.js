@@ -30,6 +30,20 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "Fatherland Front",
+    url: "tpmovements/fatherland-front.html",
+    cat: "TP Movements",
+    keywords: [
+      "Fatherland Front",
+      "Engelbert Dollfuß",
+      "Engelbert Dollfuss",
+      "Austrofascism",
+      "Vaterländische Front",
+      "Dollfuss",
+      "Heimwehr"
+    ]
+  },
+  {
     title: "Yugoslav National Movement",
     url: "tpmovements/zbor.html",
     cat: "TP Movements",
