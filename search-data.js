@@ -260,7 +260,7 @@ window.TP_PAGES = [
   },
   {
     title: "Architects of the Resurrection",
-    url: "tpmovements/architectsofresurrection.html",
+    url: "tpmovements/architects-of-the-resurrection.html",
     cat: "TP Movements",
     keywords: [
       "Architects of the Resurrection",
