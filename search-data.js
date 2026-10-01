@@ -259,6 +259,18 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "Architects of the Resurrection",
+    url: "tpmovements/architectsofresurrection.html",
+    cat: "TP Movements",
+    keywords: [
+      "Architects of the Resurrection",
+      "Ailtirí na hAiséirghe",
+      "Gearóid Ó Cuinneagáin",
+      "Ireland",
+      "Irish Fascism"
+    ]
+  },
+  {
     title: 'Political Circle "Zveno"',
     url: "tpmovements/zveno.html",
     cat: "TP Movements",
