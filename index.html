@@ -687,9 +687,7 @@
       doTranslate(translateSelect.value);
       translatePanel.classList.remove("open");
     });
-  </script>
-
-  <script src="search-data.js"></script>
+<script src="search-data.js"></script>
   <script>
     const pages = window.TP_PAGES || [];
 
@@ -711,9 +709,10 @@
       q = q.trim().toLowerCase();
       if (q.length < 3) return [];
       return pages.filter(function (p) {
+        if (!p.title || p.title === "PARTY NAME") return false;
         if (p.title.toLowerCase().includes(q)) return true;
         return (p.keywords || []).some(function (k) {
-          return k.includes(q) || q.includes(k);
+          return String(k).toLowerCase().includes(q);
         });
       }).slice(0, 8);
     }
@@ -734,7 +733,7 @@
         return (
           '<a class="suggestion-item" href="' + prefix + p.url + '" data-index="' + i + '">' +
             '<span class="suggestion-title">' + p.title + '</span>' +
-            '<span class="suggestion-tag">' + p.cat + '</span>' +
+            '<span class="suggestion-tag">' + (p.cat || "") + '</span>' +
           '</a>'
         );
       }).join("");
@@ -760,7 +759,7 @@
     if (form && input && box) {
       input.addEventListener("input", function () {
         const q = input.value;
-        if (q.trim().length < 1) {
+        if (q.trim().length < 3) {
           closeSuggestions();
           return;
         }
