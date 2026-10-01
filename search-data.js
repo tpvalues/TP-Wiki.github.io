@@ -203,6 +203,20 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "National Union for Social Justice",
+    url: "tpmovements/NUSJ.html",
+    cat: "TP Movements",
+    keywords: [
+      "National Union for Social Justice",
+      "NUSJ",
+      "Charles Edward Coughlin",
+      "Coughlin",
+      "Father Coughlin",
+      "Catholicism",
+      "Distributism"
+    ]
+  },
+  {
     title: 'Political Circle "Zveno"',
     url: "tpmovements/zveno.html",
     cat: "TP Movements",
