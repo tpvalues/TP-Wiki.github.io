@@ -190,6 +190,19 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "National Socialist Workers' Party",
+    url: "tpmovements/NSPR.html",
+    cat: "TP Movements",
+    keywords: [
+      "National Socialist Workers' Party",
+      "NSPR",
+      "Wacław Kozielski",
+      "Józef Grałła",
+      "Narodowo Socjalistyczna Partia Robotnicza",
+      "NatSoc"
+    ]
+  },
+  {
     title: 'Political Circle "Zveno"',
     url: "tpmovements/zveno.html",
     cat: "TP Movements",
