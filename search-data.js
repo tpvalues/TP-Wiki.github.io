@@ -203,6 +203,20 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "Independent Workers' Party (German Socialists)",
+    url: "tpmovements/UAP.html",
+    cat: "TP Movements",
+    keywords: [
+      "Independent Workers' Party",
+      "UAP",
+      "German Socialists",
+      "Strasserism",
+      "Neue Rechte",
+      "German Social Union",
+      "Unabhängige Arbeiter-Partei"
+    ]
+  },
+  {
     title: "National Union for Social Justice",
     url: "tpmovements/NUSJ.html",
     cat: "TP Movements",
