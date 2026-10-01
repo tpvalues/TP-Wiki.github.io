@@ -144,7 +144,7 @@ window.TP_PAGES = [
       "Falange Española",
       "Spanish Phalanx",
       "José Antonio Primo de Rivera",
-      "Jose Antonio Primo de Rivera,
+      "Jose Antonio Primo de Rivera",
       "Primo de Rivera",
       "Falangism",
       "Alfonso García Valdecasas",
