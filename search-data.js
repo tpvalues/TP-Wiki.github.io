@@ -231,6 +231,20 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "United National Independence Party",
+    url: "tpmovements/UNIP.html",
+    cat: "TP Movements",
+    keywords: [
+      "United National Independence Party",
+      "UNIP",
+      "Mainza Chona",
+      "Trevor Mwamba",
+      "Protestant",
+      "Zambia",
+      "Kenneth Kaunda"
+    ]
+  },
+  {
     title: "Agrarian Labor Party",
     url: "tpmovements/PAL.html",
     cat: "TP Movements",
