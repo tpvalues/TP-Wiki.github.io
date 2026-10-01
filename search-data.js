@@ -217,6 +217,20 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "Agrarian Labor Party",
+    url: "tpmovements/PAL.html",
+    cat: "TP Movements",
+    keywords: [
+      "Agrarian Labor Party",
+      "PAL",
+      "Partido Agrario Laborista",
+      "Carlos Ibáñez del Campo",
+      "Ibañismo",
+      "Ibanismo",
+      "Popular Freedom Alliance"
+    ]
+  },
+  {
     title: 'Political Circle "Zveno"',
     url: "tpmovements/zveno.html",
     cat: "TP Movements",
