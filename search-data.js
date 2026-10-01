@@ -166,6 +166,30 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "Danish People's Party",
+    url: "tpmovements/DA.html",
+    cat: "TP Movements",
+    keywords: [
+      "Danish People's Party",
+      "Dansk Folkeparti",
+      "Victor Pürschel",
+      "Denmark",
+      "National Socialist Workers' Party of Denmark"
+    ]
+  },
+  {
+    title: "The National Legion",
+    url: "tpmovements/DNL.html",
+    cat: "TP Movements",
+    keywords: [
+      "The National Legion",
+      "Den Nasjonale Legion",
+      "National Legion",
+      "Nasjonale Legion",
+      "Karl Meyer"
+    ]
+  },
+  {
     title: 'Political Circle "Zveno"',
     url: "tpmovements/zveno.html",
     cat: "TP Movements",
