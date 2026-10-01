@@ -387,14 +387,10 @@
       color: var(--text-muted);
     }
     .site-footer a { color: var(--link); }
-
-    /* ===== TABLET ===== */
     @media (max-width: 900px) {
       .header-links { display: none; }
       .search-box { max-width: none; }
     }
-
-    /* ===== MOBILE ===== */
     @media (max-width: 640px) {
       .site-header {
         padding: 0.5rem 0.7rem;
@@ -463,22 +459,14 @@
         padding: 1.3rem 1rem 2.2rem;
         border-left: none;
       }
-      .welcome-hero {
-        margin-bottom: 1.8rem;
-      }
+      .welcome-hero { margin-bottom: 1.8rem; }
       .welcome-hero img {
         width: 88px;
         margin-bottom: 1rem;
       }
-      .welcome-hero h1 {
-        font-size: 1.55rem;
-      }
-      .welcome-hero .tagline {
-        font-size: 0.98rem;
-      }
-      .welcome-body {
-        font-size: 0.98rem;
-      }
+      .welcome-hero h1 { font-size: 1.55rem; }
+      .welcome-hero .tagline { font-size: 0.98rem; }
+      .welcome-body { font-size: 0.98rem; }
       .highlight-box {
         padding: 1rem 1.1rem;
         margin: 1.5rem 0;
@@ -489,8 +477,6 @@
         font-size: 0.78rem;
       }
     }
-
-    /* ===== VERY SMALL ===== */
     @media (max-width: 380px) {
       .welcome-hero h1 { font-size: 1.35rem; }
       .logo img { height: 28px; }
@@ -552,7 +538,9 @@
       </div>
     </div>
   </header>
+
   <div id="google_translate_element"></div>
+
   <div class="page-wrapper">
     <aside class="sidebar">
       <h3>Navigation</h3>
@@ -599,6 +587,7 @@
       </div>
     </main>
   </div>
+
   <footer class="site-footer">
     <p>
       Third Position Wiki · Independent reference project ·
@@ -607,9 +596,8 @@
     </p>
   </footer>
 
-  <div id="google_translate_element"></div>
-<script src="translate.js"></script>
-<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script src="translate.js"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
   <script>
     const root = document.documentElement;
@@ -650,44 +638,55 @@
       localStorage.setItem("tp-font-size", size);
       fontSizeInput.value = size;
     }
-    function doTranslate(lang) {
-  if (window.tpDoTranslate) window.tpDoTranslate(lang);
-}
+
     applyTheme(root.getAttribute("data-theme") || "light");
     const savedFont = localStorage.getItem("tp-font-family");
     if (savedFont) applyFontFamily(savedFont);
     const savedSize = localStorage.getItem("tp-font-size");
     if (savedSize) applyFontSize(savedSize);
 
-    toggle.addEventListener("click", () => {
+    toggle.addEventListener("click", function () {
       applyTheme(root.getAttribute("data-theme") === "dark" ? "light" : "dark");
     });
-    settingsBtn.addEventListener("click", (e) => {
+    settingsBtn.addEventListener("click", function (e) {
       e.stopPropagation();
       settingsPanel.classList.toggle("open");
       translatePanel.classList.remove("open");
     });
-    translateBtn.addEventListener("click", (e) => {
+    translateBtn.addEventListener("click", function (e) {
       e.stopPropagation();
       translatePanel.classList.toggle("open");
       settingsPanel.classList.remove("open");
     });
-    document.addEventListener("click", (e) => {
+    document.addEventListener("click", function (e) {
       if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) settingsPanel.classList.remove("open");
       if (!translatePanel.contains(e.target) && e.target !== translateBtn) translatePanel.classList.remove("open");
     });
-    fontFamilySelect.addEventListener("change", () => applyFontFamily(fontFamilySelect.value));
-    fontSizeInput.addEventListener("change", () => applyFontSize(fontSizeInput.value));
-    fontSizeInput.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") { applyFontSize(fontSizeInput.value); fontSizeInput.blur(); }
+    fontFamilySelect.addEventListener("change", function () {
+      applyFontFamily(fontFamilySelect.value);
     });
-    fontSizeMinus.addEventListener("click", () => applyFontSize(parseInt(fontSizeInput.value, 10) - 1));
-    fontSizePlus.addEventListener("click", () => applyFontSize(parseInt(fontSizeInput.value, 10) + 1));
-    translateSelect.addEventListener("change", () => {
-      doTranslate(translateSelect.value);
+    fontSizeInput.addEventListener("change", function () {
+      applyFontSize(fontSizeInput.value);
+    });
+    fontSizeInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        applyFontSize(fontSizeInput.value);
+        fontSizeInput.blur();
+      }
+    });
+    fontSizeMinus.addEventListener("click", function () {
+      applyFontSize(parseInt(fontSizeInput.value, 10) - 1);
+    });
+    fontSizePlus.addEventListener("click", function () {
+      applyFontSize(parseInt(fontSizeInput.value, 10) + 1);
+    });
+    translateSelect.addEventListener("change", function () {
+      if (window.tpDoTranslate) window.tpDoTranslate(translateSelect.value);
       translatePanel.classList.remove("open");
     });
-<script src="search-data.js"></script>
+  </script>
+
+  <script src="search-data.js"></script>
   <script>
     const pages = window.TP_PAGES || [];
 
@@ -706,10 +705,10 @@
     }
 
     function searchPages(q) {
-      q = q.trim().toLowerCase();
+      q = (q || "").trim().toLowerCase();
       if (q.length < 3) return [];
       return pages.filter(function (p) {
-        if (!p.title || p.title === "PARTY NAME") return false;
+        if (!p || !p.title || p.title === "PARTY NAME") return false;
         if (p.title.toLowerCase().includes(q)) return true;
         return (p.keywords || []).some(function (k) {
           return String(k).toLowerCase().includes(q);
@@ -723,6 +722,7 @@
     let activeIndex = -1;
 
     function renderSuggestions(matches) {
+      if (!box) return;
       if (!matches.length) {
         box.innerHTML = '<div class="suggestion-empty">No results</div>';
         box.classList.add("open");
@@ -742,6 +742,7 @@
     }
 
     function closeSuggestions() {
+      if (!box) return;
       box.classList.remove("open");
       box.innerHTML = "";
       activeIndex = -1;
