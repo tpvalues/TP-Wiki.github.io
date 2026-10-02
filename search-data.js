@@ -30,6 +30,19 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "Bolivian Socialist Falange",
+    url: "tpmovements/falange-socialista-boliviana.html",
+    cat: "TP Movements",
+    keywords: [
+      "Bolivian Socialist Falange",
+      "Falange Socialista Boliviana",
+      "Falange",
+      "Óscar Únzaga de la Vega",
+      "Bolivia",
+      "FSB"
+    ]
+  },
+  {
     title: "Fatherland Front",
     url: "tpmovements/fatherland-front.html",
     cat: "TP Movements",
