@@ -259,6 +259,17 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "Authentic Phalanx",
+    url: "tpmovements/authentic-phalanx.html",
+    cat: "TP Movements",
+    keywords: [
+      "Authentic Phalanx",
+      "Falange Auténtica",
+      "Antonio Pérez Bencomo",
+      "Falangism"
+    ]
+  },
+  {
     title: "Architects of the Resurrection",
     url: "tpmovements/architects-of-the-resurrection.html",
     cat: "TP Movements",
