@@ -30,6 +30,19 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "National Fascist Community",
+    url: "tpmovements/national-fascist-community.html",
+    cat: "TP Movements",
+    keywords: [
+      "National Fascist Community",
+      "Národní Obec Fašistická",
+      "NOF",
+      "Radola Gajda",
+      "Gajdism",
+      "Zapadoslavia"
+    ]
+  },
+  {
     title: "Bolivian Socialist Falange",
     url: "tpmovements/falange-socialista-boliviana.html",
     cat: "TP Movements",
