@@ -216,6 +216,18 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "Scottish Democratic Fascist Party",
+    url: "tpmovements/SDFP.html",
+    cat: "TP Movements",
+    keywords: [
+      "SDFP",
+      "Scottish Democratic Fascist Party",
+      "William Weir Gilmour",
+      "Hume Sleigh",
+      "Scotland"
+    ]
+  },
+  {
     title: "National Socialist Workers' Party",
     url: "tpmovements/NSPR.html",
     cat: "TP Movements",
