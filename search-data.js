@@ -122,6 +122,19 @@ window.TP_PAGES = [
     ]
   },
   {
+    title: "Democratic Nationalist Party",
+    url: "tpmovements/democratic-nationalist-party.html",
+    cat: "TP Movements",
+    keywords: [
+      "Democratic Nationalist Party",
+      "Partidul Naționalist Democrat",
+      "PND",
+      "Nicolae Iorga",
+      "Moldavia",
+      "Alexandru C. Cuza"
+    ]
+  },
+  {
     title: "Christian Social Party",
     url: "tpmovements/christian-social-party.html",
     cat: "TP Movements",
